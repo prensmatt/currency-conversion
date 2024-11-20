@@ -60,7 +60,6 @@ function wifi() {
             error.classList.add('disnone')
             updateExchangeRate();
         }
-
         break;
     }
     
@@ -77,7 +76,6 @@ function ensureSingleDecimal(input) {
     }
     input.value = value;
 }
-
 firstInp.addEventListener('input', () => {
     if (firstInp.value.length > 19) {
         let item = firstInp.value.split('');
@@ -90,6 +88,13 @@ firstInp.addEventListener('input', () => {
     firstInp.value = firstInp.value.replace(",", ".");
     ensureSingleDecimal(firstInp);
     a = 1;
+    if (firstInp.value === ".") {
+        firstInp.value = "0.";
+    }
+    else {
+        secondInp.value = (firstInp.value * rate).toFixed(5);
+    }
+    wifi();
 });
 secondInp.addEventListener('input', () => {
     if (secondInp.value.length > 19) {
@@ -103,18 +108,6 @@ secondInp.addEventListener('input', () => {
     secondInp.value = secondInp.value.replace(",", ".");
     ensureSingleDecimal(secondInp);
     a = 2;
-});
-firstInp.addEventListener("input", () => {
-    if (firstInp.value === ".") {
-        firstInp.value = "0.";
-    }
-    else {
-        secondInp.value = (firstInp.value * rate).toFixed(5);
-    }
-    wifi();
-});
-
-secondInp.addEventListener("input", () => {
     if (secondInp.value === ".") {
         secondInp.value = "0.";
     }
@@ -123,56 +116,48 @@ secondInp.addEventListener("input", () => {
     }
     wifi();
 });
-
 usdOne.addEventListener("click", () => {
     toggleChoice([rubOne, usdOne, eurOne, gbpOne], usdOne);
     fromCurrency = usdOne.textContent;
     updateExchangeRate();
     wifi();
 });
-
 rubOne.addEventListener("click", () => {
     toggleChoice([rubOne, usdOne, eurOne, gbpOne], rubOne);
     fromCurrency = rubOne.textContent;
     updateExchangeRate();
     wifi();
 });
-
 eurOne.addEventListener("click", () => {
     toggleChoice([rubOne, usdOne, eurOne, gbpOne], eurOne);
     fromCurrency = eurOne.textContent;
     updateExchangeRate();
     wifi();
 });
-
 gbpOne.addEventListener("click", () => {
     toggleChoice([rubOne, usdOne, eurOne, gbpOne], gbpOne);
     fromCurrency = gbpOne.textContent;
     updateExchangeRate();
     wifi();
 });
-
 usdTwo.addEventListener("click", () => {
     toggleChoice([rubTwo, usdTwo, eurTwo, gbpTwo], usdTwo);
     toCurrency = usdTwo.textContent;
     updateExchangeRate();
     wifi();
 });
-
 rubTwo.addEventListener("click", () => {
     toggleChoice([rubTwo, usdTwo, eurTwo, gbpTwo], rubTwo);
     toCurrency = rubTwo.textContent;
     updateExchangeRate();
     wifi();
 });
-
 eurTwo.addEventListener("click", () => {
     toggleChoice([rubTwo, usdTwo, eurTwo, gbpTwo], eurTwo);
     toCurrency = eurTwo.textContent;
     updateExchangeRate();
     wifi();
 });
-
 gbpTwo.addEventListener("click", () => {
     toggleChoice([rubTwo, usdTwo, eurTwo, gbpTwo], gbpTwo);
     toCurrency = gbpTwo.textContent;
