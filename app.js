@@ -53,13 +53,29 @@ function updateExchangeRate() {
 function wifi() {
     while (!navigator.onLine) {
         error.classList.remove('disnone');
-        if(a == 1){
-            secondInp.value = "";
+        console.log(toCurrency);
+        console.log(fromCurrency);
+        if(toCurrency == fromCurrency){
+
+            if(a == 1){
+            secondInp.value = firstInp.value;
+            console.log(toCurrency);
+            console.log(fromCurrency);
+            }
+            else if(a == 2){
+            firstInp.value = secondInp.value;
+            }
+            break;
         }
-        else if(a == 2){
-            firstInp.value = "";
+        else if(toCurrency != fromCurrency){
+            if(a == 1){
+                secondInp.value = "";
+            }
+            else if(a == 2){
+                firstInp.value = "";
+            }
+            break;
         }
-        break;
     }
     while (navigator.onLine) {
         if (error.classList != "disnone") {
