@@ -82,6 +82,26 @@ function ensureSingleDecimal(input) {
     }
     input.value = value;
 }
+function removeLeadingZeros(input) {
+    let value = input.value;
+    let cut = value.split("");
+    
+    if (cut[0] === "0") {
+        if (cut[1] === "0") {
+            cut.splice(0, 1);
+            value = cut.join("");
+        }
+        else if (cut[1] && cut[1].match(/[1-9]/)) {
+            cut.splice(0, 1);
+            value = cut.join("");
+        }
+        else if (cut[1] === ".") {
+            value = cut.join("");
+        }
+    }
+    
+    input.value = value;
+}
 firstInp.addEventListener('input', () => {
     if (firstInp.value.length > 19) {
         let item = firstInp.value.split('');
@@ -93,6 +113,8 @@ firstInp.addEventListener('input', () => {
     firstInp.value = firstInp.value.replace(/[^0-9.,]/g, '');
     firstInp.value = firstInp.value.replace(",", ".");
     ensureSingleDecimal(firstInp);
+    removeLeadingZeros(firstInp) ;    
+
     a = 1;
     if (firstInp.value === ".") {
         firstInp.value = "0.";
@@ -112,6 +134,7 @@ secondInp.addEventListener('input', () => {
     }
     secondInp.value = secondInp.value.replace(/[^0-9.,]/g, '');
     secondInp.value = secondInp.value.replace(",", ".");
+    removeLeadingZeros(secondInp); 
     ensureSingleDecimal(secondInp);
     a = 2;
     if (secondInp.value === ".") {
