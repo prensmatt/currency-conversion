@@ -53,14 +53,11 @@ function updateExchangeRate() {
 function wifi() {
     while (!navigator.onLine) {
         error.classList.remove('disnone');
-        console.log(toCurrency);
-        console.log(fromCurrency);
         if(toCurrency == fromCurrency){
-
+            p1.textContent = "1 " + fromCurrency + " = " + "1 " + " " + toCurrency;
+            p2.textContent = "1 " + toCurrency + " = " + "1 " + " " + fromCurrency;
             if(a == 1){
             secondInp.value = firstInp.value;
-            console.log(toCurrency);
-            console.log(fromCurrency);
             }
             else if(a == 2){
             firstInp.value = secondInp.value;
